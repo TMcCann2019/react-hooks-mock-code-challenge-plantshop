@@ -43,8 +43,8 @@
       "price": 55
     },
     {
-      "name": "a",
-      "image": "trees.com",
+      "name": "Calathea",
+      "image": "./images/calathea.jpg",
       "price": "20",
       "id": 8
     }
