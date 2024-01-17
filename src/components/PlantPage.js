@@ -27,12 +27,16 @@ function PlantPage() {
 
   const filteredPlants = plants.filter((plant) =>
     plant.name.toLowerCase().includes(searchQuery.toLowerCase()))
-  
+
+  const updatePlant = (updatedPlant) => {
+    setPlants(plants.map(plant => (plant.id === updatedPlant.id ? updatedPlant : plant)))
+  }
+
   return (
     <main>
       <NewPlantForm onAddPlant={handleAddPlant}/>
       <Search filteredPlants={filteredPlants} onSearchChange={handleSearchChange}/>
-      <PlantList plants={filteredPlants} onToggleSoldOut={handleToggleSoldOut} />
+      <PlantList plants={filteredPlants} onToggleSoldOut={handleToggleSoldOut} onEditPlant={updatePlant}/>
     </main>
   );
 }

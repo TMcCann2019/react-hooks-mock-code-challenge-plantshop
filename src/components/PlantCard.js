@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import EditPlantForm from "./EditPlantForm";
 
-function PlantCard({id, name, price, image, onToggleSoldOut}) { 
+function PlantCard({id, name, price, image, onToggleSoldOut, onEditPlant}) { 
   const [soldOut, setSoldOut] = useState(false);
+  const [isShowEdit, setIsShowEdit] = useState(false);
 
   const handleToggleSoldOut = () => {
     setSoldOut(!soldOut)
@@ -13,7 +15,9 @@ function PlantCard({id, name, price, image, onToggleSoldOut}) {
       <img src={image} alt={name} />
       <h4>{name}</h4>
       <p>Price: {price}</p>
-      <button onClick={handleToggleSoldOut}>{soldOut ? 'In Stock' : 'Sold Out'}</button>
+      <button className="primary" onClick={handleToggleSoldOut}>{soldOut ? 'In Stock' : 'Sold Out'}</button>
+      <button onClick={() => setIsShowEdit(!isShowEdit)}>{isShowEdit ? 'Close' : 'Edit'}</button>
+      {isShowEdit && <EditPlantForm id={id} price={price} onEditPlant={onEditPlant}/>}
     </li>
   );
 }
