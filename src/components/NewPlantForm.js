@@ -12,6 +12,13 @@ function NewPlantForm({onAddPlant}) {
       image,
       price
     }
+    fetch ("http://localhost:6001/plants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newPlant)
+    })
     onAddPlant(newPlant)
     setName("")
     setImage("")
