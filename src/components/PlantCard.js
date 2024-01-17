@@ -10,14 +10,17 @@ function PlantCard({id, name, price, image, onToggleSoldOut, onEditPlant}) {
     onToggleSoldOut(id, !soldOut)
   }
 
+  const toggleShowEdit = () => {
+    setIsShowEdit(!isShowEdit)
+  }
   return (
     <li className="card">
       <img src={image} alt={name} />
       <h4>{name}</h4>
       <p>Price: {price}</p>
       <button className="primary" onClick={handleToggleSoldOut}>{soldOut ? 'In Stock' : 'Sold Out'}</button>
-      <button onClick={() => setIsShowEdit(!isShowEdit)}>{isShowEdit ? 'Close' : 'Edit'}</button>
-      {isShowEdit && <EditPlantForm id={id} price={price} onEditPlant={onEditPlant}/>}
+      <button onClick={toggleShowEdit}>{isShowEdit ? 'Close' : 'Edit'}</button>
+      {isShowEdit && <EditPlantForm id={id} price={price} onEditPlant={onEditPlant} onFormSubmit={toggleShowEdit}/>}
     </li>
   );
 }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-export default function EditPlantForm({id, price, onEditPlant}) {
+export default function EditPlantForm({id, price, onEditPlant, onFormSubmit}) {
     const [inputPrice, setInputPrice] = useState(price)
 
     const handleSubmit = (e) => {
@@ -15,6 +15,7 @@ export default function EditPlantForm({id, price, onEditPlant}) {
         fetch(`http://localhost:6001/plants/${id}`, config)
             .then(resp => resp.json())
             .then(onEditPlant)
+        onFormSubmit()
     }
 
     return (
